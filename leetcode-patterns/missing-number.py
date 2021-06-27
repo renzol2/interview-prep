@@ -33,4 +33,14 @@ class Solution(object):
     full_sum += full_range[-1]
     
     return full_sum - nums_sum
-          
+  
+  def missingNumber(self, nums):
+    """
+    :type nums: List[int]
+    :rtype: int
+    """
+    missing = len(nums)
+    for i, n in enumerate(nums):
+        missing ^= i ^ n
+    return missing
+ 
