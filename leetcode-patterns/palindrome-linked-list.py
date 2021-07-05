@@ -61,5 +61,34 @@ class Solution:
       length += 1
       curr = curr.next
     return length
+  
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+  def isPalindrome(self, head: ListNode) -> bool:
+    # Global variable for left pointer
+    self.front_pointer = head
     
+    def recursively_check(current=head) -> bool:
+      # Current is the right pointer
+      if current is not None:
+        # Recursively iterate through list until done
+        if not recursively_check(current.next):
+          return False
+
+        # Check that the l/r pointer are not equal
+        if self.front_pointer.val != current.val:
+          return False
         
+        self.front_pointer = self.front_pointer.next
+
+      # Returning true if current is none, OR if
+      # left/right ARE equal
+      return True
+    
+    return recursively_check()
+  
+      
