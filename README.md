@@ -1,3 +1,3 @@
-# My Leetcode Solutions :nerd_face:
+# my leetcode solutions
 
-Personal repo of my Leetcode solutions for me to look back on and cry and really feel the imposter syndrome kicking in :heart_eyes:
+![image](https://user-images.githubusercontent.com/55109467/124784832-eab07800-df0b-11eb-9d52-ce7cb821f675.png)
