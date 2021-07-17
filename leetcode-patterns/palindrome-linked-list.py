@@ -67,7 +67,7 @@ class Solution:
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution:
+class Solution2:
   def isPalindrome(self, head: ListNode) -> bool:
     # Global variable for left pointer
     self.front_pointer = head
@@ -91,4 +91,60 @@ class Solution:
     
     return recursively_check()
   
+class Solution3:
+    def isPalindrome(self, head: ListNode) -> bool:
+      if head.next is None:
+        return True
       
+      # Find end of first half
+      end_of_first_half = self.getMiddle(head)
+      if end_of_first_half.val != head.val and end_of_first_half.next is None:
+        return False
+      elif end_of_first_half.val == head.val and end_of_first_half.next is None:
+        return True
+            
+      # Reverse the second half
+      start_of_second_half = end_of_first_half
+      reversed_head = self.reverse(start_of_second_half)
+      
+      curr = head
+      curr_r = reversed_head
+      
+      # Determine if there is palindrome
+      result = True
+      while curr is not None and curr_r is not None:
+        if curr.val != curr_r.val:
+          result = False
+          break
+        curr = curr.next
+        curr_r = curr_r.next
+      
+      # Restore the list
+      self.reverse(reversed_head)
+      
+      # Return the result
+      return result
+    
+    def getMiddle(self, head: ListNode) -> ListNode:
+      fast = head
+      slow = head
+      while fast is not None:
+        if fast.next is None:
+          return slow
+        fast = fast.next.next
+        slow = slow.next
+      return slow
+      
+    def reverse(self, head: ListNode) -> ListNode:
+      if head.next is None:
+        return head
+      prev = None
+      curr = head
+      next_node = None
+      
+      while curr is not None:
+        next_node = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next_node
+      return prev
