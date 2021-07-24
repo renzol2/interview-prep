@@ -34,3 +34,9 @@ target = 2
 result = s.search(nums, target)
 expected = -1
 print(result == expected)
+
+# Example 3
+target = 12
+result = s.search(nums, target)
+expected = 5
+print(result == expected)
