@@ -25,3 +25,22 @@ function twoSum(nums: number[], target: number): number[] {
   
   return [-1, -1];
 };
+
+function twoSum2(nums: number[], target: number): number[] {
+  const diffs = {};
+  for (let i = 0; i < nums.length; i++) {
+    diffs[target - nums[i]] = i;
+  }
+  
+  for (let i = 0; i < nums.length; i++) {
+    const j = diffs[nums[i]];
+    if (j !== undefined) {
+      if (i === j) {
+        continue;
+      }
+      return [i, j];
+    }
+  }
+  
+  return [-1, -1];
+};
