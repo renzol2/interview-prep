@@ -4,7 +4,7 @@ function twoSum(nums: number[], target: number): number[] {
     const num = nums[i];
     const diff = target - num;
     if (diff === num) {
-      const duplicateIndex = nums.indexOf(num, i+1);
+      const duplicateIndex = nums.indexOf(num, i + 1);
       if (duplicateIndex === -1) {
         continue;
       } else {
@@ -13,25 +13,25 @@ function twoSum(nums: number[], target: number): number[] {
     }
     diffs[num] = diff;
   }
-    
+
   for (let i = 0; i < nums.length; i++) {
     const value = diffs[nums[i]];
     if (value !== undefined) {
       if (diffs[value] === nums[i]) {
-        return [i, nums.indexOf(diffs[nums[i]])];      
+        return [i, nums.indexOf(diffs[nums[i]])];
       }
     }
   }
-  
+
   return [-1, -1];
-};
+}
 
 function twoSum2(nums: number[], target: number): number[] {
   const diffs = {};
   for (let i = 0; i < nums.length; i++) {
     diffs[target - nums[i]] = i;
   }
-  
+
   for (let i = 0; i < nums.length; i++) {
     const j = diffs[nums[i]];
     if (j !== undefined) {
@@ -41,6 +41,27 @@ function twoSum2(nums: number[], target: number): number[] {
       return [i, j];
     }
   }
-  
+
   return [-1, -1];
-};
+}
+
+function twoSum3(nums: number[], target: number): number[] {
+  const diffs = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    diffs[target - nums[i]] = i;
+  }
+
+  for (let i = 0; i < nums.length; i++) {
+    const other = diffs[nums[i]];
+
+    if (other !== undefined) {
+      if (nums[diffs[nums[other]]] === nums[i]) {
+        if (diffs[nums[i]] === i) continue;
+        return [diffs[nums[i]], i];
+      }
+    }
+  }
+
+  return [-1, -1];
+}
