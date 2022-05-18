@@ -1,26 +1,14 @@
-use std::collections::HashMap;
+use std::collections::HashSet;
 
 impl Solution {
     pub fn contains_duplicate(nums: Vec<i32>) -> bool {
-        let mut frequencies: HashMap<i32, u32> = HashMap::new();
+        let mut num_set = HashSet::new();
         for num in nums {
-            match frequencies.get(&num) {
-                Some(freq) => {
-                    let freq = freq + 1;
-                    frequencies.insert(num, freq + 1);
-                }
-                None => {
-                    frequencies.insert(num, 1);
-                }
-            };
-        }
-
-        for (_, frequency) in frequencies {
-            if frequency > 1 {
+            if !num_set.insert(num) {
                 return true;
             }
         }
 
         return false;
     }
-}
+} 
